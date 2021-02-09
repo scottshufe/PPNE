@@ -47,10 +47,10 @@ SAVE_PATH_CT = os.path.join(args.save, 'tmp', 'context.txt')
 
 #------------------------------------------------------------------------------------------------
 # Make the split.
-adj_train = np.load('../citeseer_data/adj_train.npy')
-test_edges = np.load('../citeseer_data/test_edges.npy')
-test_edges_false = np.load('../citeseer_data/test_edges_false.npy')
-labels = np.load('../citeseer_data/labels.npy')
+adj_train = np.load('../../data/citeseer_data/adj_train.npy')
+test_edges = np.load('../../data/citeseer_data/test_edges.npy')
+test_edges_false = np.load('../../data/citeseer_data/test_edges_false.npy')
+labels = np.load('../../data/citeseer_data/labels.npy')
 
 g = nx.from_numpy_matrix(adj_train, parallel_edges=False, create_using=nx.Graph())
 g.remove_edges_from(test_edges)

@@ -61,10 +61,10 @@ with open(os.path.join(args.save, 'cora_ppne_modify'), 'a') as file_record:
 #------------------------------------------------------------------------------------------------
 # Make the split.
 # modify
-adj_train = np.load('../cora_data/adj_train.npy')
-test_edges = np.load('../cora_data/test_edges.npy')
-test_edges_false = np.load('../cora_data/test_edges_false.npy')
-labels = np.load('../cora_data/labels.npy')
+adj_train = np.load('../../data/cora_data/adj_train.npy')
+test_edges = np.load('../../data/cora_data/test_edges.npy')
+test_edges_false = np.load('../../data/cora_data/test_edges_false.npy')
+labels = np.load('../../data/cora_data/labels.npy')
 
 g = nx.from_numpy_matrix(adj_train, parallel_edges=False, create_using=nx.Graph())
 g.remove_edges_from(test_edges)
@@ -118,7 +118,7 @@ for _ in range(1):
     added_edges = []
     for i in range(ITER):
         print("now ITER: {}".format(i))
-        with open(os.path.join(args.save, 'pgd_record_file_modify'), 'a') as file_record:
+        with open(os.path.join(args.save, 'cora_ppne_modify'), 'a') as file_record:
             file_record.write('ITER {}, now time: {}\n'.format(i+1, datetime.now()))
             file_record.flush()
 

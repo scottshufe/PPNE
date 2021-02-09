@@ -48,10 +48,10 @@ SAVE_PATH_CT = os.path.join(args.save, 'tmp', 'context.txt')
 
 #------------------------------------------------------------------------------------------------
 # Make the split.
-adj_train_csr = sp.load_npz('../pubmed_data/adj_train_csr.npz')
-test_edges = np.load('../pubmed_data/test_edges.npy')
-test_edges_false = np.load('../pubmed_data/test_edges_false.npy')
-labels = np.load('../pubmed_data/labels.npy')
+adj_train_csr = sp.load_npz('../../data/pubmed_data/adj_train_csr.npz')
+test_edges = np.load('../../data/pubmed_data/test_edges.npy')
+test_edges_false = np.load('../../data/pubmed_data/test_edges_false.npy')
+labels = np.load('../../data/pubmed_data/labels.npy')
 
 g = nx.from_scipy_sparse_matrix(adj_train_csr)
 nodes = list(g.nodes())

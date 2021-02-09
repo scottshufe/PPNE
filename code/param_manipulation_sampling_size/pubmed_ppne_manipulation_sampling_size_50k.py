@@ -66,10 +66,10 @@ with open(os.path.join(args.save, 'ppne_batch_size_50k_final'), 'a') as file_rec
 #------------------------------------------------------------------------------------------------
 # Make the split.
 # modify
-adj_train_csr = sp.load_npz('../pubmed_data/adj_train_csr.npz')
-test_edges = np.load('../pubmed_data/test_edges.npy')
-test_edges_false = np.load('../pubmed_data/test_edges_false.npy')
-labels = np.load('../pubmed_data/labels.npy')
+adj_train_csr = sp.load_npz('../../data/pubmed_data/adj_train_csr.npz')
+test_edges = np.load('../../data/pubmed_data/test_edges.npy')
+test_edges_false = np.load('../../data/pubmed_data/test_edges_false.npy')
+labels = np.load('../../data/pubmed_data/labels.npy')
 
 # g = nx.from_numpy_matrix(adj_train, parallel_edges=False, create_using=nx.Graph())
 g = nx.from_scipy_sparse_matrix(adj_train_csr)

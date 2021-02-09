@@ -35,7 +35,7 @@ parser.add_argument('--init', type=float, default=0.001)
 parser.add_argument('--batch-size', type=int, default=50)
 parser.add_argument('--add-delete-prob', type=float, default=0.5)
 parser.add_argument('--candidate-add-num', type=int, default=10000)
-parser.add_argument('--save',default='./tradeoff_citeseer_ppne', type=str)
+parser.add_argument('--save',default='./paramk_cora_ppne', type=str)
 args = parser.parse_args()
 
 
@@ -53,7 +53,7 @@ IN_PATH = os.path.join(args.save, 'tmp', 'input.txt')
 SAVE_PATH = os.path.join(args.save, 'tmp', 'output.txt')
 SAVE_PATH_CT = os.path.join(args.save, 'tmp', 'context.txt')
 
-with open(os.path.join(args.save, 'citeseer_ppne_modify'), 'a') as file_record:
+with open(os.path.join(args.save, 'cora_ppne_modify_param_k_1'), 'a') as file_record:
     file_record.write('ppne_modify_iter, now time: {}\n'.format(datetime.now()))
     file_record.write('-------------------------------------------\n')
     file_record.flush()
@@ -61,10 +61,10 @@ with open(os.path.join(args.save, 'citeseer_ppne_modify'), 'a') as file_record:
 #------------------------------------------------------------------------------------------------
 # Make the split.
 # modify
-adj_train = np.load('../../data/citeseer_data/adj_train.npy')
-test_edges = np.load('../../data/citeseer_data/test_edges.npy')
-test_edges_false = np.load('../../data/citeseer_data/test_edges_false.npy')
-labels = np.load('../../data/citeseer_data/labels.npy')
+adj_train = np.load('../../data/cora_data/adj_train.npy')
+test_edges = np.load('../../data/cora_data/test_edges.npy')
+test_edges_false = np.load('../../data/cora_data/test_edges_false.npy')
+labels = np.load('../../data/cora_data/labels.npy')
 
 g = nx.from_numpy_matrix(adj_train, parallel_edges=False, create_using=nx.Graph())
 g.remove_edges_from(test_edges)
@@ -104,7 +104,7 @@ victim_edges = np.concatenate((test_edges, test_edges_false), axis=0)
 
 adj_train_first = np.copy(adj_train)
 
-with open(os.path.join(args.save, 'citeseer_ppne_modify'), 'a') as file_record:
+with open(os.path.join(args.save, 'cora_ppne_modify_param_k_1'), 'a') as file_record:
     file_record.write('start optimization, now time: {}\n'.format(datetime.now()))
     file_record.write('-------------------------------------------\n')
     file_record.flush()
@@ -118,7 +118,7 @@ for _ in range(1):
     added_edges = []
     for i in range(ITER):
         print("now ITER: {}".format(i))
-        with open(os.path.join(args.save, 'pgd_record_file_modify'), 'a') as file_record:
+        with open(os.path.join(args.save, 'cora_ppne_modify_param_k_1'), 'a') as file_record:
             file_record.write('ITER {}, now time: {}\n'.format(i+1, datetime.now()))
             file_record.flush()
 
@@ -145,6 +145,8 @@ for _ in range(1):
 
             loss_for_candidates = util_utility.perturbation_utility_loss(adj_train_csr, candidates,
                                                                          args.dim, args.window_size)
+
+            loss_for_candidates = np.power(loss_for_candidates, 1)
 
             adj_train = np.copy(adj_train_opt)
             adj_train[i_ts, j_ts] = args.init
@@ -218,7 +220,7 @@ for _ in range(1):
 
             added_edges.append(edge)
 
-            with open(os.path.join(args.save, 'citeseer_ppne_modify'), 'a') as file_record:
+            with open(os.path.join(args.save, 'cora_ppne_modify_param_k_1'), 'a') as file_record:
                 file_record.write('ITER {} over, now time: {}\n'.format(i + 1, datetime.now()))
                 file_record.write("Following edge is added: {}\n".format(edge))
                 file_record.write('-------------------------------------------\n')
@@ -252,6 +254,8 @@ for _ in range(1):
             loss_for_candidates = util_utility.perturbation_utility_loss(adj_train_csr, candidates,
                                                                          args.dim, args.window_size)
 
+            loss_for_candidates = np.power(loss_for_candidates, 1)
+            
             adj_train = np.copy(adj_train_opt)
 
             y_ts = adj_train[i_ts, j_ts]
@@ -323,7 +327,7 @@ for _ in range(1):
 
             deleted_edges.append(edge)
 
-            with open(os.path.join(args.save, 'citeseer_ppne_modify'), 'a') as file_record:
+            with open(os.path.join(args.save, 'cora_ppne_modify_param_k_1'), 'a') as file_record:
                 file_record.write('ITER {} over, now time: {}\n'.format(i + 1, datetime.now()))
                 file_record.write("Following edge is removed: {}\n".format(edge))
                 file_record.write('-------------------------------------------\n')
