@@ -4,6 +4,7 @@ PPNE is a privacy-preserving network embedding publishing framework which protec
 ## Software Environment
 
 - Python 3.7.9. All necessary packages are listed in file requirements.txt
+- CUDA 10.1 and cuDNN
 
 ## Python Packages Installation
 
