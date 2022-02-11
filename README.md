@@ -1,5 +1,5 @@
 # PPNE
-PPNE is a privacy-preserving network embedding publishing framework which protects private links in the network and retains data utility of embeddings as much as possibile.
+PPNE is a privacy-preserving network embedding publishing framework which protects private links in the network and retains data utility of embeddings for downstream tasks as much as possibile.
 
 ## Software Environment
 
