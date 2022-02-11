@@ -14,7 +14,7 @@ pip install -r requirements.txt
 
 ## How to use
 
-Main codes are stored in the *code* directory, and each code file is named after the corresponding experimential part in the article. Simply run the *.py* files to obtain the results (for example, you could run *code/tradeoff/cora_ppne.py* to obtain the tradeoff experimental results of PPNE on Cora). 
+- Main codes are stored in the *code* directory, and each code file is named after the corresponding experimential part in the article. Simply run the *.py* files to obtain the results (for example, you could run *code/tradeoff/cora_ppne.py* to obtain the tradeoff experimental results of PPNE on Cora). 
 
 ## Large-scale dataset link
 
