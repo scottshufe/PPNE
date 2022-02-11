@@ -11,3 +11,6 @@ PPNE is a privacy-preserving network embedding publishing framework which protec
 ```
 pip install -r requirements.txt
 ```
+
+## Dataset link
+Flickr: http://socialnetworks.mpi-sws.org/data-imc2007.html
